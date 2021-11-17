@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Events\SendEmail;
 use App\Mail\EmailMailer;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -22,10 +23,10 @@ class SendEmailNotification implements ShouldQueue
     /**
      * Handle the event.
      *
-     * @param object $event
+     * @param  SendEmail  $event
      * @return void
      */
-    public function handle($event)
+    public function handle(SendEmail $event)
     {
         Mail::to($event->email)->send(new EmailMailer());
     }
