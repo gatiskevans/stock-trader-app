@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Events\EmailWasSubmitted;
+use App\Events\SendEmail;
+use App\Listeners\SendEmailNotification;
 use App\Listeners\SendResponseEmail;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -19,5 +21,8 @@ class EventServiceProvider extends ServiceProvider
         EmailWasSubmitted::class => [
             SendResponseEmail::class,
         ],
+        SendEmail::class => [
+            SendEmailNotification::class
+        ]
     ];
 }

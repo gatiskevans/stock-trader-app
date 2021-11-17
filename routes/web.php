@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\MailerTestController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -13,4 +14,7 @@ Route::get('/dashboard', function () {
 
 Route::post('/email', [EmailController::class, 'processEmail'])->name('email.process');
 
-require __DIR__.'/auth.php';
+Route::get('/testemail', [MailerTestController::class, 'index'])->name('email.test');
+Route::post('/testemail', [MailerTestController::class, 'sendEmail'])->name('email.send');
+
+require __DIR__ . '/auth.php';
